@@ -19,6 +19,7 @@ int main() {
     else k2++;
     std::cout << "In zone: " << k1 << "\n";
     std::cout << "Out zone: " << k2 << "\n";
+    std::cout << "Percent: " << (k1 / k2) * 100 << "\n";
     }
     system("pause");
 }
