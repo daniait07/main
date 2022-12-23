@@ -1,41 +1,25 @@
 #include <iostream>
-#include <vector>
-#include <map>
-#include <set>
-#include <algoritmh>
-#include <queue>
-#include <fstream>
-#include <cmath>
-
-int factorial(int x) {
-	if (x == 0) {
-		return 1;
-	}
-	else {
-		int sum = 1;
-		for (int i = 1; i <= x; i++) {
-			sum *= (2 * i - 1);
-		}
-		return sum;
-	}
-}
+#include <math.h>
 
 int main() {
-	double x = 0.05;
-	double current = 0;
-	double sum = 0;
-
-	while (x <= 1) {
-		sum = 0;
-		x += 0.05;
-
-		int i = 0;
-		current = pow(x, 2 * i);
-		while (current > 0.0001) {
-
-			sum += current;
-			current = pow(x, 2 * i) / factorial(2 * i - 1);
-			i++;
-		}
-		std::cout << "X: " << x << "; Sum: " << sum << "\n";
-
+    double eps = 0.0001;
+    double step = 0.05;
+    double sum = 0;
+    for (double x = 0.1; x <= 1 + step; x += step)
+    {
+        int i = -1;
+        double res = 0;
+        double s = 0;
+        do
+        {
+            i++;
+            res = (pow(x, 2 * i + 1)) / (2 * i + 1);
+            s += res;
+            sum += res;
+        }
+        while (res >= eps);
+        std::cout << "x: " << x << "; sum (x): " << s 
+        << "; sum: " << sum << "; i: " << i << std::endl;
+    }
+    system("pause");
+}
